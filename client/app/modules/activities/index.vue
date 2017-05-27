@@ -27,7 +27,11 @@
 					.media-content
 						h4 {{ activity.userId }}
 						h5 {{ activity.desc }}
-						h5 {{ activity.status }}
+						div(v-for="user of activity.users", :key="user.userId").activityUser
+							img(:src="user.avatar")
+
+							div.username {{ user.fullName}}
+							// div.username {{ activity.turn}}
 
 		.loadMore.text-center(v-if="hasMore")
 			button.button.outline(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
