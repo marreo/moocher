@@ -69,12 +69,13 @@ module.exports = {
         create: {
             handler(ctx) {
                 this.validateParams(ctx, true);
-                logger.log('error', 'Hej1');
+                logger.log('info', 'This is ctx: ' + JSON.stringify(ctx.params));
                 let activity = new Activity({});
-                logger.log('error', 'Hej2');
 
                 activity.users.push(ctx.user.id);
-                logger.log('error', 'Hej3');
+                activity.lastUpdate = Date.now();
+                activity.desc = ctx.params.desc;
+                activity
 
                 return activity.save()
                     .then((doc) => {
