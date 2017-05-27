@@ -7,3 +7,30 @@
         color: #272727;
     }
 }
+
+.activityUser{
+    display: flex;
+
+    &:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    div, img{
+        float: left;
+    }
+
+    img{
+        width: 48px;
+        height: 48px;    
+        border-radius: 15%;
+    }
+
+    .username{
+        display: block;
+        float: left;
+        margin: 0 1.0em;
+        padding-top: 0.9em;
+        font-size: 1.1em;
+        font-weight: 300;
+    }
+}
