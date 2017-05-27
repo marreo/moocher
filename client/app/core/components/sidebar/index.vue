@@ -27,6 +27,12 @@
 							i.fa.fa-comments
 						span.label {{ "Posts" | i18n }}
 
+				router-link(tag="li", to="/activities")
+					a(:title="_('Activity')")
+						span.icon
+							i.fa.fa-comments
+						span.label {{ "Activities" | i18n }}
+
 			.title {{ "Profile" | i18n }}
 			ul
 				li
