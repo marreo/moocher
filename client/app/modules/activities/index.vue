@@ -22,10 +22,12 @@
 
 
 		transition-group.activities(name="activity", tag="ul")
-			li(v-for="activity of activities", :key="activity.code")
+			li(v-for="activity of activities", :key="activity.code").activityItem
 				article.media
 					.media-content
-						h3 {{ activity.status }}
+						h4 {{ activity.userId }}
+						h5 {{ activity.desc }}
+						h5 {{ activity.status }}
 
 		.loadMore.text-center(v-if="hasMore")
 			button.button.outline(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
