@@ -23,7 +23,6 @@ let schemaOptions = {
 };
 
 let ActivitySchema = new Schema({
-    // users: [UserSchema],
     users: [{
         type: Number,
         required: "Please fill a User ID",
@@ -35,12 +34,10 @@ let ActivitySchema = new Schema({
     lastUpdate: {
         type: Date
     },
-
     status: {
         type: Number,
         default: 1
     },
-
     metadata: {}
 
 }, schemaOptions);

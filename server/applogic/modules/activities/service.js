@@ -29,15 +29,9 @@ module.exports = {
 
     actions: {
         find: {
-            cache: true,
+            cache: false,
             handler(ctx) {
-                let filter = {};
-
-                if (ctx.params.filter == "my")
-                    filter.author = ctx.user.id;
-                else if (ctx.params.author != null) {
-                    filter.author = this.personService.decodeID(ctx.params.author);
-                }
+                let filter = { users: ctx.user.id };
 
                 let query = Activity.find(filter);
 
