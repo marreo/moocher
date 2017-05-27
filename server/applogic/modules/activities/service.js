@@ -20,10 +20,11 @@ module.exports = {
         role: "user",
         collection: Activity,
 
-        modelPropFilter: "code desc lastUpdate status",
+        modelPropFilter: "code desc users lastUpdate status turn",
 
         modelPopulates: {
-            "users": "persons"
+            "users": "persons",
+            "turn": "persons"
         }
     },
 
@@ -70,8 +71,7 @@ module.exports = {
                 activity.users.push(ctx.params.userId);
                 activity.lastUpdate = Date.now();
                 activity.desc = ctx.params.desc;
-
-                activity
+                activity.turn = ctx.user.id;
 
                 return activity.save()
                     .then((doc) => {
@@ -96,6 +96,10 @@ module.exports = {
                 return this.collection.findById(ctx.modelID).exec()
                     .then((doc) => {
                         doc.lastUpdate = Date.now();
+                        var nextId = doc.users.filter(function(id) {
+                            return id != doc.turn;
+                        });
+                        doc.turn = nextId;
                         return doc.save();
                     })
                     .then((doc) => {

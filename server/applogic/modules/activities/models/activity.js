@@ -28,6 +28,10 @@ let ActivitySchema = new Schema({
         required: "Please fill a User ID",
         ref: "User"
     }],
+    turn: {
+        type: Number,
+        ref: "User"
+    },
     desc: {
         type: String
     },
