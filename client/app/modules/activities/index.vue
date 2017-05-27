@@ -3,22 +3,17 @@
 		h2.title {{ _('Acitivities') }}
 
 		.header.flex.row.justify-space-between
-			.group.sort
-				a.link(@click="changeSort('-votes')", :class="{ active: sort == '-votes' }") {{ _("Hot") }}
-				a.link(@click="changeSort('-views')", :class="{ active: sort == '-views' }") {{ _("MostViewed") }}
-				a.link(@click="changeSort('-createdAt')", :class="{ active: sort == '-createdAt' }") {{ _("New") }}
-
-			button.button.primary(@click="newPost")
+			button.btn.btn-outline-success.activity-btn-add(@click="newPost", type="button")
 				span.icon
 					i.fa.fa-plus
-				span {{ _("NewPost") }}
+				span.text {{ _("NewPost") }}
 
 		.postForm(v-if="showForm")
 			vue-form-generator(:schema='schema', :model='model', :options='{}', :multiple="false", ref="form", :is-new-model="isNewPost")
 
 			.group.buttons
-				button.button.primary(@click="savePost") {{ _("Save") }}
-				button.button(@click="cancelPost") {{ _("Cancel") }}
+				button.btn.btn-outline-success(@click="savePost") {{ _("Save") }}
+				button.btn.btn-outline-danger(@click="cancelPost") {{ _("Cancel") }}
 
 
 		transition-group.activities(name="activity", tag="ul")
@@ -34,7 +29,7 @@
 							// div.username {{ activity.turn}}
 
 		.loadMore.text-center(v-if="hasMore")
-			button.button.outline(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
+			button.btn.btn-outline-success(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
 		.noMore.text-center(v-if="!hasMore")
 			span.text-muted You reached the end of the list.
 		hr

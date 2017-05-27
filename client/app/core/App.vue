@@ -1,10 +1,8 @@
 <template lang="pug">
 	div
-		page-header(:toggle-sidebar="toggleSidebar")
+		page-header
 
-		sidebar(:minimized="miniSidebar")
-
-		section.app-main(:class="{ miniSidebar: miniSidebar }")
+		section.app-main(:class="")
 			router-view(keep-alive)
 
 	// a(href="https://github.com/icebob/vue-express-mongo-boilerplate")
@@ -15,7 +13,6 @@
 	import Vue from "vue";
 
 	import PageHeader from "./components/header/index";
-	import Sidebar from "./components/sidebar/index";
 
 	import Service from "./service";
 
@@ -32,8 +29,7 @@
 		 * Load sub-components
 		 */
 		components: {
-			PageHeader,
-			Sidebar
+			PageHeader
 		},
 
 		/**
@@ -43,8 +39,7 @@
 		 */
 		data() {
 			return {
-				wsReconnecting: false,
-				miniSidebar: false
+				wsReconnecting: false
 			};
 		},
 
@@ -102,10 +97,6 @@
 				i = children.length;
 				while (i--)
 					this.update(children[i]);
-			},
-
-			toggleSidebar() {
-				this.miniSidebar = !this.miniSidebar;
 			}
 		},
 
