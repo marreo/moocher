@@ -25,7 +25,7 @@
 			li(v-for="activity of activities", :key="activity.code")
 				article.media
 					.media-content
-						h3 {{ activity.desc }}
+						h3 {{ activity.status }}
 
 		.loadMore.text-center(v-if="hasMore")
 			button.button.outline(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
@@ -76,6 +76,15 @@
 							required: true,
 							placeholder: this._("DescOfPost"),
 							validator: validators.string
+						},
+						{
+							type: "Number",
+							label: this._("UserId"),
+							model: "userId",
+							featured: true,
+							required: true,
+							placeholder: this._("UserIdOf"),
+							validator: validators.Number
 						},
 					]
 				}

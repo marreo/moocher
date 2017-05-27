@@ -69,7 +69,7 @@ module.exports = {
         create: {
             handler(ctx) {
                 this.validateParams(ctx, true);
-                logger.log('error', 'Hej1');
+                logger.log('info', 'This is ctx: ' + JSON.stringify(ctx.params));
                 let activity = new Activity({});
                 logger.log('error', 'Hej2');
 
