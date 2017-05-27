@@ -73,8 +73,10 @@ module.exports = {
                 let activity = new Activity({});
 
                 activity.users.push(ctx.user.id);
+                activity.users.push(ctx.params.userId);
                 activity.lastUpdate = Date.now();
                 activity.desc = ctx.params.desc;
+
                 activity
 
                 return activity.save()
