@@ -12,9 +12,8 @@ Vue.use(VueRouter);
 export default new VueRouter({
     mode: "hash",
     routes: [
-        { path: "/", component: Home },
-        { path: "/profile", component: Profile },
-        { path: "/activities", component: Activity }
+        { path: "/", component: Activity },
+        { path: "/profile", component: Profile }
         // { path: "/users", component: User, meta: { needRole: "admin" } },
         //{ path: "*", component: NotFound }
     ]
