@@ -3,6 +3,8 @@ html(lang=language)
 	head
 		title #{app.title}
 		include parts/head
+			link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css')
+			link(rel='stylesheet', href='/app/styles/frontend.css')
 
 		block styles
 
@@ -11,6 +13,9 @@ html(lang=language)
 
 		.bg
 		.bg-overlay
+		.container
+			.header.clearfix
+				h3.text-muted Moocher
 			
 		block content
 			

@@ -1,3 +1,30 @@
+body {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    min-height: 100vh;
+}
+
+html {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+}
+
+.activity-btn-add {
+    .text {
+        margin-left: 10px;
+    }
+}
+
+$images-root: "~images/";
+$logoImg: url($images-root + 'Moocher-logo.png');
+.logo-img {
+    // background-image: $logoImg;
+    background-image: url('~images/Moocher-logo.png');
+    background-position: center center;
+    background-size: cover;
+}
+
 // @import "themes/blurred/variables";
 // // Common style
 // * {

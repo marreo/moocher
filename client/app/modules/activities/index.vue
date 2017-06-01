@@ -6,7 +6,7 @@
 			button.btn.btn-outline-success.activity-btn-add(@click="newPost", type="button")
 				span.icon
 					i.fa.fa-plus
-				span.text {{ _("NewPost") }}
+				span.text {{ _("NewActivity") }}
 
 		.postForm(v-if="showForm")
 			vue-form-generator(:schema='schema', :model='model', :options='{}', :multiple="false", ref="form", :is-new-model="isNewPost")
@@ -16,8 +16,8 @@
 				button.btn.btn-outline-danger(@click="cancelPost") {{ _("Cancel") }}
 
 
-		transition-group.activities(name="activity", tag="ul")
-			li(v-for="activity of activities", :key="activity.code").activityItem
+		transition-group.activities(name="activity", tag="ul", class="list-group")
+			li(v-for="activity of activities", :key="activity.code").activityItem.list-group-item
 				article.media
 					.media-content
 						h4 {{ activity.userId }}
