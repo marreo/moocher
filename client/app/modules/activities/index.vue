@@ -15,11 +15,8 @@
 				button.btn.btn-outline-success(@click="savePost") {{ _("Save") }}
 				button.btn.btn-outline-danger(@click="cancelPost") {{ _("Cancel") }}
 
-
-		transition-group.activities(name="activity", tag="ul")
-			li(v-for="activity of activities", :key="activity.code").activityItem
-		transition-group.activities(name="activity", tag="ul")
-			li(v-for="(activity, index) of activities", :key="activity.code").activityItem
+		transition-group.activities(name="activity", tag="ul").list-group
+			li(v-for="(activity, index) of activities", :key="activity.code").list-group-item
 				article.media
 					.media-content
 						h4 {{ activity.userId }}
