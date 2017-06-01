@@ -16,17 +16,23 @@
 				button.btn.btn-outline-danger(@click="cancelPost") {{ _("Cancel") }}
 
 
-		transition-group.activities(name="activity", tag="ul", class="list-group")
-			li(v-for="activity of activities", :key="activity.code").activityItem.list-group-item
+		transition-group.activities(name="activity", tag="ul")
+			li(v-for="activity of activities", :key="activity.code").activityItem
+		transition-group.activities(name="activity", tag="ul")
+			li(v-for="(activity, index) of activities", :key="activity.code").activityItem
 				article.media
 					.media-content
 						h4 {{ activity.userId }}
 						h5 {{ activity.desc }}
 						div(v-for="user of activity.users", :key="user.userId").activityUser
+						p {{ isTurn(activity, index) }}
+						div(v-for="(user, index) of activity.users", :key="user.code").activityUser
+							
 							img(:src="user.avatar")
 
 							div.username {{ user.fullName}}
 							// div.username {{ activity.turn}}
+							// input(type="checkbox", name="completed", checked=(isTurn(index)) ? "checked" : undefined))
 
 		.loadMore.text-center(v-if="hasMore")
 			button.btn.btn-outline-success(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
@@ -199,6 +205,10 @@
 
 			deletePost(post) {
 				this.removeRow(post);
+			},
+			isTurn(activity) {
+				console.log(activity);
+				return "It is " + activity.turn.fullName + "s turn";
 			}
 
 		},
