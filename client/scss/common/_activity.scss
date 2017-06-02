@@ -1,37 +1,29 @@
-.activities{
+.activities {
     padding-left: 0px;
 }
 
-.activityItem{
+.activityItem {
     list-style-type: none;
     margin: 0px 15px 15px 0px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     padding: 14px 20px;
-
-    article{
+    article {
         background-color: #fff;
         color: #272727;
     }
 }
 
-.activityUser{
-    display: flex;
-
-    &:not(:first-child) {
-        margin-top: 10px;
-    }
-
-    div, img{
+.activityUser {
+    div,
+    img {
         float: left;
     }
-
-    img{
+    img {
         width: 48px;
-        height: 48px;    
+        height: 48px;
         border-radius: 15%;
     }
-
-    .username{
+    .username {
         display: block;
         float: left;
         margin: 0 1.0em;

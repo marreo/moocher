@@ -17,13 +17,13 @@
 
 		transition-group.activities(name="activity", tag="ul").list-group
 			li(v-for="(activity, index) of activities", :key="activity.code").list-group-item
-				article.media
-					.media-content
-						h4 {{ activity.userId }}
-						h5 {{ activity.desc }}
-						div(v-for="user of activity.users", :key="user.userId").activityUser
-						p {{ isTurn(activity, index) }}
-						div(v-for="(user, index) of activity.users", :key="user.code").activityUser
+				div.col
+					h4 {{ activity.userId }}
+					h5 {{ activity.desc }}
+					div(v-for="user of activity.users", :key="user.userId").activityUser
+					p {{ isTurn(activity, index) }}
+					div.row
+						div(v-for="(user, index) of activity.users", :key="user.code").activityUser.col-6
 							
 							img(:src="user.avatar")
 
