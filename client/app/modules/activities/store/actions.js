@@ -57,9 +57,12 @@ export const saveRow = function(store, model) {
 };
 
 export const updateRow = function(store, model) {
+    console.log('HB');
     service.rest("update", model).then((data) => {
+        console.log('HA');
         updated(store, data);
     }).catch((err) => {
+        console.log('HJ');
         toastr.error(err.message);
     });
 };

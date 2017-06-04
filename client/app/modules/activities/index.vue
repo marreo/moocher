@@ -22,6 +22,9 @@
 					h5 {{ activity.desc }}
 					div(v-for="user of activity.users", :key="user.userId").activityUser
 					p {{ isTurn(activity, index) }}
+					p {{ activity.modelID }}
+					p {{ activity.lastUpdate }}
+					button(@click="updatePost(activity)") Change Turn
 					div.row
 						div(v-for="(user, index) of activity.users", :key="user.code").activityUser.col-6
 							
@@ -129,7 +132,10 @@
 			}
 		},	
 
-		methods: {
+		methods: {			
+			sayHello: function(bajs) {
+            console.log('Hello' + bajs);
+			},
 			...mapActions("activities", [
 				"getRows",
 				"loadMoreRows",
@@ -186,13 +192,15 @@
                         console.log('Saving row?');
                         this.saveRow(this.model);
                     }
-					else
-						this.updateRow(this.model);
 
 					this.cancelPost();
 				} else {
 					this.focusFirstErrorInput();
 				}
+			},
+
+			updatePost(data) {
+				this.updateRow(data);
 			},
 
 			cancelPost() {

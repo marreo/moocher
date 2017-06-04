@@ -47,10 +47,10 @@ module.exports = {
 
         // return a model by ID
         get: {
-            cache: true, // if true, we don't increment the views!
+            cache: false, // if true, we don't increment the views!
             permission: C.PERM_PUBLIC,
             handler(ctx) {
-                ctx.assertModelIsExist(ctx.t("app:PostNotFound"));
+                ctx.assertModelIsExist(ctx.t("app:ActivityNotFound"));
 
                 return Activity.findByIdAndUpdate(ctx.modelID, { $inc: { views: 1 } }).exec().then((doc) => {
                         return this.toJSON(doc);
@@ -88,18 +88,23 @@ module.exports = {
         },
 
         update: {
-            permission: C.PERM_OWNER,
             handler(ctx) {
+                logger.info('H0');
                 ctx.assertModelIsExist(ctx.t("app:ActivityNotFound"));
                 this.validateParams(ctx);
+                logger.info('H1: ' + ctx.modelID);
 
                 return this.collection.findById(ctx.modelID).exec()
                     .then((doc) => {
+                        logger.info('H2');
                         doc.lastUpdate = Date.now();
+                        logger.info('H3');
                         var nextId = doc.users.filter(function(id) {
                             return id != doc.turn;
                         });
-                        doc.turn = nextId;
+                        logger.info('H4: ' + nextId);
+                        doc.turn = parseInt(nextId);
+                        logger.info('H5: ' + JSON.stringify(doc));
                         return doc.save();
                     })
                     .then((doc) => {
