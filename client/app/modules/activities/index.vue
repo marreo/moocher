@@ -16,23 +16,21 @@
 				button.btn.btn-outline-danger(@click="cancelPost") {{ _("Cancel") }}
 
 		transition-group.activities(name="activity", tag="ul").list-group
-			li(v-for="(activity, index) of activities", :key="activity.code").list-group-item
-				div.col
-					h4 {{ activity.userId }}
-					h5 {{ activity.desc }}
-					div(v-for="user of activity.users", :key="user.userId").activityUser
+			li(v-for="(activity, index) of activities", :key="activity.code").list-group-item.activities--item
+				span.col-12.acitivites--item-title {{ activity.desc }}
+				div.col-12.activities--item-content
+					span.activities--item-content-close
+						i.fa.fa-angle-left
 					p {{ isTurn(activity, index) }}
 					p {{ activity.modelID }}
 					p {{ activity.lastUpdate }}
 					button(@click="updatePost(activity)") Change Turn
-					div.row
-						div(v-for="(user, index) of activity.users", :key="user.code").activityUser.col-6
-							
-							img(:src="user.avatar")
-
-							div.username {{ user.fullName}}
-							// div.username {{ activity.turn}}
-							// input(type="checkbox", name="completed", checked=(isTurn(index)) ? "checked" : undefined))
+				// div(v-for="user of activity.users", :key="user.userId")
+				// 	div.row
+				// 		div(v-for="(user, index) of activity.users", :key="user.code").activityUser.col-6
+				// 			img(:src="user.avatar")
+				// 			div.username {{ user.fullName}}
+				// 			// input(type="checkbox", name="completed", checked=(isTurn(index)) ? "checked" : undefined))
 
 		.loadMore.text-center(v-if="hasMore")
 			button.btn.btn-outline-success(@click="loadMoreRows", :class="{ 'loading': fetching }") {{ _("LoadMore") }}
@@ -216,6 +214,14 @@
 				return "It is " + activity.turn.fullName + "s turn";
 			}
 
+		},
+		mounted: function(){
+			$('.activities--item').on('click', '.acitivites--item-title', function() {
+				$(this).closest('.activities--item').addClass('active');
+			});
+			$('.activities--item').on('click', '.activities--item-content-close', function() {
+				$(this).closest('.activities--item').removeClass('active');
+			});
 		},
 
 		/**

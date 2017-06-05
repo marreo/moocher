@@ -1,0 +1,81 @@
+.activities--item {
+    padding: 30px;
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    &:first-child {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+    &:last-child {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    &.active {
+        height: 100vh;
+        & .activities--item-content {
+            opacity: 1;
+            top: 0;
+            -webkit-filter: blur(0px);
+            -moz-filter: blur(0px);
+            filter: blur(0px);
+        }
+        & .acitivites--item-title {
+            position: absolute;
+            top: 60px;
+            opacity: 0 !important;
+            transform: scale(0, 0);
+        }
+    }
+    &-title {
+        letter-spacing: 5px;
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        transition: all .5s, opacity .1s cubic-bezier(1, -0.02, 0, 1.01);
+        -moz-transition: all .5s, opacity .1s cubic-bezier(1, -0.02, 0, 1.01);
+        -webkit-transition: all .5s, opacity .1s cubic-bezier(1, -0.02, 0, 1.01);
+    }
+    &-content {
+        position: absolute;
+        top: 150px;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transition: top .4s, opacity .8s, filter .5s;
+        -moz-transition: top .4s, opacity .8s, -moz-filter .5s;
+        -webkit-transition: top .4s, opacity .8s, -webkit-filter .5s;
+        -webkit-filter: blur(10px);
+        padding: 20px;
+        &-close {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+        }
+    }
+    &:nth-child(odd) {
+        background: #03A9F4;
+        & .list-group-item {
+            background: lighten(#03A9F4, 15%);
+        }
+    }
+    &:nth-child(even) {
+        background: #3F51B5;
+        & .list-group-item {
+            background: lighten(#3F51B5, 15%);
+        }
+    }
+    // &:nth-child(3) {
+    //     background: #4CAF50;
+    //     & .list-group-item {
+    //         background: lighten(#4CAF50, 15%);
+    //     }
+    // }
+}
