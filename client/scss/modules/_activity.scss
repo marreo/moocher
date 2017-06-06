@@ -4,6 +4,7 @@
     color: #fff;
     font-family: 'Roboto', sans-serif;
     border: none;
+    text-align: center;
     &:first-child {
         border-top-right-radius: 0;
         border-top-left-radius: 0;
@@ -61,15 +62,15 @@
         }
     }
     &:nth-child(odd) {
-        background: #03A9F4;
+        background: #d35400;
         & .list-group-item {
-            background: lighten(#03A9F4, 15%);
+            background: lighten(#d35400, 15%);
         }
     }
     &:nth-child(even) {
-        background: #3F51B5;
+        background: #f39c12;
         & .list-group-item {
-            background: lighten(#3F51B5, 15%);
+            background: lighten(#f39c12, 15%);
         }
     }
     // &:nth-child(3) {

@@ -1,5 +1,8 @@
+@import "themes/blurred/variables";
 @import "common/activity";
 @import "modules/activity";
+@import "modules/form-activity";
+@import "modules/icons";
 .activity-btn-add {
     .text {
         margin-left: 10px;

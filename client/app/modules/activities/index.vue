@@ -8,23 +8,25 @@
 					i.fa.fa-plus
 				span.text {{ _("NewActivity") }}
 
-		.postForm(v-if="showForm")
-			vue-form-generator(:schema='schema', :model='model', :options='{}', :multiple="false", ref="form", :is-new-model="isNewPost")
-
-			.group.buttons
-				button.btn.btn-outline-success(@click="savePost") {{ _("Save") }}
-				button.btn.btn-outline-danger(@click="cancelPost") {{ _("Cancel") }}
+		form.form--new-activity(v-show="showForm")
+			div.form-group.row
+				label(for="activity-email").col-md-2.col-form-label Enter an email
+				div.col-md-10
+					input(name="activity-email", type="email", placeholder="Enter email").form-control
+					small.form-text.text-muted Enter the email address of the person you would like to Mooch with.
 
 		transition-group.activities(name="activity", tag="ul").list-group
 			li(v-for="(activity, index) of activities", :key="activity.code").list-group-item.activities--item
-				span.col-12.acitivites--item-title {{ activity.desc }}
+				i.ico.ico-airplane
+				div.col-12
+					span.acitivites--item-title {{ activity.desc }}
 				div.col-12.activities--item-content
 					span.activities--item-content-close
 						i.fa.fa-angle-left
 					p {{ isTurn(activity, index) }}
 					p {{ activity.modelID }}
 					p {{ activity.lastUpdate }}
-					button(@click="updatePost(activity)") Change Turn
+					button(@click="updatePost(activity)").btn.btn-success Change Turn
 				// div(v-for="user of activity.users", :key="user.userId")
 				// 	div.row
 				// 		div(v-for="(user, index) of activity.users", :key="user.code").activityUser.col-6
@@ -70,6 +72,7 @@
 			return {
 				showForm: false,
 				isNewPost: false,
+				submitting: false,
 				model: null,
 				schema: {
 					fields: [
@@ -130,10 +133,7 @@
 			}
 		},	
 
-		methods: {			
-			sayHello: function(bajs) {
-            console.log('Hello' + bajs);
-			},
+		methods: {
 			...mapActions("activities", [
 				"getRows",
 				"loadMoreRows",
@@ -153,10 +153,10 @@
 			},
 
 			newPost() {
+				this.submitting = true;
 				this.model = schemaUtils.createDefaultObject(this.schema);
 				this.showForm = true;
 				this.isNewPost = true;
-
 				this.focusFirstInput();
 			},
 
